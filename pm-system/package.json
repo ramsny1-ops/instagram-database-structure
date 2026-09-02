@@ -5,6 +5,7 @@
   "type": "module",
   "bin": {
     "pm": "./dist/index.js"
+    
   },
   "main": "dist/index.js",
   "scripts": {
