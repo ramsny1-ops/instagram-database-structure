@@ -1,0 +1,10 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Maintainer
+    url: https://github.com/ramsny1-ops
+    about: Open an issue or reach out to the maintainer
+issue_template_selector:
+  - label: 'Bug report'
+    template: bug_report.yml
+  - label: 'Feature request'
+    template: feature_request.yml

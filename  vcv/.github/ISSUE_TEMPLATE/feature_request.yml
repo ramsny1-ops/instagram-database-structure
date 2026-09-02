@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest an improvement to the schema or documentation
+title: '[FEATURE] '
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please describe the requested feature and why it's useful.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation and use cases
+  - type: textarea
+    id: schema
+    attributes:
+      label: Proposed schema changes (if any)
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
