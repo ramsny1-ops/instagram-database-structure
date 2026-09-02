@@ -12,13 +12,14 @@ Expected behavior
 Unacceptable behavior
 
 - Harassment, hateful or abusive language, and personal attacks.
-- Discrimination based on race, religion, gender, sexual orientation, disability, or other protected characteristics.
+- Discrimination based on race, religion, gender, sexual orientation,
+  disability, or other protected characteristics.
 - Doxxing, threats, or the disclosure of private information.
 
 Reporting
 
 - If you encounter unacceptable behavior, please open an issue or email the
-  maintainers at: maintainers@example.com (replace with a real contact).
+  maintainers at: ramsny1-ops@users.noreply.github.com.
 
 Enforcement
 

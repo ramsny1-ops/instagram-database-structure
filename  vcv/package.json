@@ -1,0 +1,40 @@
+{
+    "name": "instagram-sql-schema",
+    "version": "0.1.0",
+    "private": true,
+    "description": "An educational, production-aware SQLite schema modeling common social-network patterns (users, posts, follows, likes, comments, stories, messaging, RBAC).",
+    "keywords": [
+        "sqlite",
+        "schema",
+        "instagram",
+        "social",
+        "database",
+        "learning"
+    ],
+    "author": "ramsny1-ops <ramsny1-ops@users.noreply.github.com>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ramsny1-ops/instagram-sql-schema.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ramsny1-ops/instagram-sql-schema/issues",
+        "email": "ramsny1-ops@users.noreply.github.com"
+    },
+    "homepage": "https://github.com/ramsny1-ops/instagram-sql-schema#readme",
+    "engines": {
+        "bun": ">=1.0.0"
+    },
+    "scripts": {
+        "format": "prettier --write \"**/*.{md,json,sql,js,ts}\"",
+        "start": "docker build -t instagram-db . && docker run --rm -p 8080:8080 instagram-db",
+        "compose:up": "docker-compose up --build",
+        "compose:down": "docker-compose down",
+        "format:check": "prettier --check \"**/*.{md,json,sql,js,ts}\"",
+        "lint": "echo \"no linters configured\""
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "prettier": "^3.0.0"
+    }
+}
