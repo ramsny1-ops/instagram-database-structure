@@ -1,0 +1,26 @@
+name: Welcome new contributors
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Post welcome message
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const isIssue = !!context.payload.issue;
+            const number = isIssue ? context.payload.issue.number : context.payload.pull_request.number;
+            const body = `Thanks for opening this ${isIssue ? 'issue' : 'pull request'}! Welcome 👋\n\nPlease make sure to read the CONTRIBUTING.md and CODE_OF_CONDUCT.md. If this is a contribution, include migration notes and tests where appropriate.`;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: number,
+              body
+            });

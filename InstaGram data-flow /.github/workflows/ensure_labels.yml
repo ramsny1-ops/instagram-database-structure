@@ -1,0 +1,54 @@
+name: Ensure Issue Labels
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  ensure-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure Node available
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Create/update labels from .github/labels.json
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const path = '.github/labels.json';
+            if (!fs.existsSync(path)) {
+              core.info('No labels.json found, skipping');
+              return;
+            }
+            const labels = JSON.parse(fs.readFileSync(path, 'utf8'));
+            for (const lbl of labels) {
+              const params = {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: lbl.name,
+                color: lbl.color.replace('#',''),
+                description: lbl.description || ''
+              };
+              try {
+                await github.rest.issues.createLabel(params);
+                core.info(`Created label: ${lbl.name}`);
+              } catch (e) {
+                if (e.status === 422) {
+                  // label exists — try to update
+                  await github.rest.issues.updateLabel({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    name: lbl.name,
+                    color: lbl.color.replace('#',''),
+                    description: lbl.description || ''
+                  });
+                  core.info(`Updated label: ${lbl.name}`);
+                } else {
+                  throw e;
+                }
+              }
+            }

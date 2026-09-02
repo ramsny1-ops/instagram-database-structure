@@ -1,0 +1,21 @@
+name: Close stale issues
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run stale action
+        uses: actions/stale@v6
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-issue-message:
+            'This issue has been automatically marked as stale due to
+            inactivity. Please comment if you would like to keep it open.'
+          days-before-stale: 60
+          days-before-close: 7
+          exempt-labels: 'pinned,security'
